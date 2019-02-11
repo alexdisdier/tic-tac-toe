@@ -21,37 +21,46 @@ class App extends Component {
     const row2 = grid[1].join("");
     const row3 = grid[2].join("");
     if (row1 === "XXX") {
-      console.log("winner X wins");
+      return true;
     } else if (row1 === "OOO") {
-      console.log("winner O wins");
+      return false;
     } else if (row2 === "XXX") {
-      console.log("winner X wins");
+      return true;
     } else if (row2 === "OOO") {
-      console.log("winner O wins");
+      return false;
     } else if (row3 === "XXX") {
-      console.log("winner X wins");
+      return true;
     } else if (row3 === "OOO") {
-      console.log("winner O wins");
+      return false;
     }
   };
 
   checkCol = grid => {
-    const col1 = grid[0][0] + grid[0][1] + grid[0][2];
-    const col2 = grid[1][0] + grid[1][1] + grid[1][2];
-    const col3 = grid[2][0] + grid[2][1] + grid[2][2];
-    if (col1 === "XXX") {
-      console.log("winner X wins");
-    } else if (col1 === "OOO") {
-      console.log("winner O wins");
-    } else if (col2 === "XXX") {
-      console.log("winner X wins");
-    } else if (col2 === "OOO") {
-      console.log("winner O wins");
-    } else if (col3 === "XXX") {
-      console.log("winner X wins");
-    } else if (col3 === "OOO") {
-      console.log("winner O wins");
+    const col1 = grid[0][0] + grid[1][0] + grid[2][0];
+    const col2 = grid[0][1] + grid[1][1] + grid[2][1];
+    const col3 = grid[0][2] + grid[1][2] + grid[2][2];
+    let winner = this.state.winner;
+    if (col1 === "XXX" || col2 === "XXX" || col3 === "XXX") {
+      winner = "Player One";
+    } else if (col1 === "OOO" || col2 === "OOO" || col3 === "OOO") {
+      winner = "Player Two";
     }
+
+    this.setState({ winner: winner });
+  };
+
+  checkDiagnol = grid => {
+    const diagonalRight = grid[0][0] + grid[1][1] + grid[2][2];
+    const diagonalLeft = grid[0][2] + grid[1][2] + grid[2][0];
+    let winner = this.state.winner;
+
+    if (diagonalRight === "XXX" || diagonalRight === "XXX") {
+      winner = "Player One";
+    } else if (diagonalRight === "OOO" || diagonalLeft === "OOO") {
+      winner = "Player Two";
+    }
+
+    this.setState({ winner: winner });
   };
 
   play = (row, col) => {
@@ -64,6 +73,10 @@ class App extends Component {
 
     if (turnPlayer1 + turnPlayer2 === 9) {
       return "Draw";
+    }
+
+    if (this.state.winner !== "") {
+      return;
     }
 
     for (let i = 0; i < newGrid.length; i++) {
@@ -85,7 +98,8 @@ class App extends Component {
     }
 
     this.checkRow(newGrid);
-    // this.checkCol(newGrid);
+    this.checkCol(newGrid);
+    this.checkDiagnol(newGrid);
 
     this.setState({
       turnPlayer1: turnPlayer1,
@@ -110,11 +124,16 @@ class App extends Component {
   };
 
   render() {
+    let winner = "";
+    if (this.state.winner !== "") {
+      winner = this.state.winner;
+    }
     return (
       <div className="App">
         <Header />
         <div className="game">
           <div className="grid">
+            {winner}
             <table>
               <tbody>
                 {this.state.grid.map((e, row) => (
