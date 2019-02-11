@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
+
+html {
+  --color-green: #14bdac;
+  --color-green-dark: #0da192;
+  --color-gray: #30383f;
+  --color-white: #ffffff;
+  --font-family-main: "Roboto", sans-serif;
+  --height-header: 80px;
+  --padding-header: 20px;
+  --border-px: 8px;
+}
+
+body {
+  color: #30383f;
+  font-family: var(--font-family-main);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.game {
+  background-color: var(--color-green);
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+
+table,
+td {
+  padding: 20px;
+}
+
+td {
+  height: 100px;
+  width: 100px;
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+}
+
+tr:first-child td:first-child {
+  border-right: var(--border-px) solid var(--color-green-dark);
+  border-bottom: var(--border-px) solid var(--color-green-dark);
+}
+
+tr:first-child td:last-child {
+  border-left: var(--border-px) solid var(--color-green-dark);
+  border-bottom: var(--border-px) solid var(--color-green-dark);
+}
+
+tr:nth-child(2) td:first-child {
+  border-right: var(--border-px) solid var(--color-green-dark);
+  border-bottom: var(--border-px) solid var(--color-green-dark);
+}
+
+tr:nth-child(2) td:nth-child(2) {
+  border-top: var(--border-px) solid var(--color-green-dark);
+  border-bottom: var(--border-px) solid var(--color-green-dark);
+}
+
+tr:nth-child(2) td:last-child {
+  border-left: var(--border-px) solid var(--color-green-dark);
+  border-bottom: var(--border-px) solid var(--color-green-dark);
+}
+
+tr:last-child td:first-child {
+  border-right: var(--border-px) solid var(--color-green-dark);
+}
+
+tr:last-child td:last-child {
+  border-left: var(--border-px) solid var(--color-green-dark);
+}
+
+button {
+  padding: 10px 8px;
+  background-color: #ffffff;
+  color: var(--color-green);
+  font-weight: bold;
+  line-height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* button:hover {
+  background-color: var(--color-green);
+  color: #ffffff;
+} */

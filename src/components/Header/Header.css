@@ -1,0 +1,16 @@
+header {
+  padding: 60px;
+  background-color: #ffffff;
+  color: rgba(0, 0, 0, 0.54);
+  text-align: center;
+}
+
+.flex-radio {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.flex-radio div {
+  padding: 8px;
+}
