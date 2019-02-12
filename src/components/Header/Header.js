@@ -5,8 +5,9 @@ const header = props => {
   return (
     <header>
       <div className="wrapper">
-        <p>Select Player One:</p>
-        <div className="flex-radio">
+        {/* <p>Select Player One:</p> */}
+        <p>Tic Tac Toe</p>
+        {/* <div className="flex-radio">
           <div>
             <input type="radio" id="zero" name="tic-tac" value="zero" />
             <label htmlFor="zero">O</label>
@@ -16,7 +17,7 @@ const header = props => {
             <input type="radio" id="cross" name="tic-tac" value="cross" />
             <label htmlFor="cross">X</label>
           </div>
-        </div>
+        </div> */}
       </div>
     </header>
   );

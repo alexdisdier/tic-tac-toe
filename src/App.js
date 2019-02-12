@@ -20,18 +20,11 @@ class App extends Component {
     const row1 = grid[0].join("");
     const row2 = grid[1].join("");
     const row3 = grid[2].join("");
-    if (row1 === "XXX") {
-      return true;
-    } else if (row1 === "OOO") {
-      return false;
-    } else if (row2 === "XXX") {
-      return true;
-    } else if (row2 === "OOO") {
-      return false;
-    } else if (row3 === "XXX") {
-      return true;
-    } else if (row3 === "OOO") {
-      return false;
+
+    if (row1 === "XXX" || row2 === "XXX" || row3 === "XXX") {
+      return "X";
+    } else if (row1 === "OOO" || row2 === "OOO" || row3 === "XXX") {
+      return "O";
     }
   };
 
@@ -39,28 +32,23 @@ class App extends Component {
     const col1 = grid[0][0] + grid[1][0] + grid[2][0];
     const col2 = grid[0][1] + grid[1][1] + grid[2][1];
     const col3 = grid[0][2] + grid[1][2] + grid[2][2];
-    let winner = this.state.winner;
-    if (col1 === "XXX" || col2 === "XXX" || col3 === "XXX") {
-      winner = "Player One";
-    } else if (col1 === "OOO" || col2 === "OOO" || col3 === "OOO") {
-      winner = "Player Two";
-    }
 
-    this.setState({ winner: winner });
+    if (col1 === "XXX" || col2 === "XXX" || col3 === "XXX") {
+      return "X";
+    } else if (col1 === "OOO" || col2 === "OOO" || col3 === "OOO") {
+      return "O";
+    }
   };
 
-  checkDiagnol = grid => {
-    const diagonalRight = grid[0][0] + grid[1][1] + grid[2][2];
-    const diagonalLeft = grid[0][2] + grid[1][2] + grid[2][0];
-    let winner = this.state.winner;
+  checkDiagonal = grid => {
+    const diagonalLeft = grid[0][0] + grid[1][1] + grid[2][2];
+    const diagonalRight = grid[0][2] + grid[1][1] + grid[2][0];
 
-    if (diagonalRight === "XXX" || diagonalRight === "XXX") {
-      winner = "Player One";
+    if (diagonalRight === "XXX" || diagonalLeft === "XXX") {
+      return "X";
     } else if (diagonalRight === "OOO" || diagonalLeft === "OOO") {
-      winner = "Player Two";
+      return "O";
     }
-
-    this.setState({ winner: winner });
   };
 
   play = (row, col) => {
@@ -70,14 +58,7 @@ class App extends Component {
     let turn = this.state.turn;
     let turnPlayer1 = this.state.turnPlayer1;
     let turnPlayer2 = this.state.turnPlayer2;
-
-    if (turnPlayer1 + turnPlayer2 === 9) {
-      return "Draw";
-    }
-
-    if (this.state.winner !== "") {
-      return;
-    }
+    let winner = this.state.winner;
 
     for (let i = 0; i < newGrid.length; i++) {
       if (i === row) {
@@ -97,15 +78,28 @@ class App extends Component {
       }
     }
 
-    this.checkRow(newGrid);
-    this.checkCol(newGrid);
-    this.checkDiagnol(newGrid);
+    if (
+      this.checkRow(newGrid) === "X" ||
+      this.checkCol(newGrid) === "X" ||
+      this.checkDiagonal(newGrid) === "X"
+    ) {
+      winner = "X";
+    } else if (
+      this.checkRow(newGrid) === "O" ||
+      this.checkCol(newGrid) === "O" ||
+      this.checkDiagonal(newGrid) === "O"
+    ) {
+      winner = "O";
+    } else if (turnPlayer1 + turnPlayer2 === 9) {
+      winner = "Draw";
+    }
 
     this.setState({
       turnPlayer1: turnPlayer1,
       turnPlayer2: turnPlayer2,
       turn: turn,
-      grid: newGrid
+      grid: newGrid,
+      winner: winner
     });
   };
 
@@ -125,16 +119,32 @@ class App extends Component {
 
   render() {
     let winner = "";
-    if (this.state.winner !== "") {
-      winner = this.state.winner;
+    if (this.state.winner !== "" && this.state.winner !== "Draw") {
+      winner = (
+        <span id="result">
+          <span>{this.state.winner}</span>WINNER !
+        </span>
+      );
+    } else if (this.state.winner !== "" && this.state.winner === "Draw") {
+      winner = (
+        <span id="result">
+          <span>
+            {this.state.winner}{" "}
+            <span className="emoji" role="img" aria-label="smily face">
+              😀
+            </span>
+          </span>
+        </span>
+      );
     }
+
     return (
       <div className="App">
         <Header />
         <div className="game">
           <div className="grid">
             {winner}
-            <table>
+            <table className={winner !== "" ? "game-over" : ""}>
               <tbody>
                 {this.state.grid.map((e, row) => (
                   <tr key={row}>
