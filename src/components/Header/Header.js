@@ -7,6 +7,9 @@ const header = props => {
       <div className="wrapper">
         {/* <p>Select Player One:</p> */}
         <p>Tic Tac Toe</p>
+        <span className="turn">
+          {props.player === 0 ? "Next Player: X" : "Next Player: O"}
+        </span>
         {/* <div className="flex-radio">
           <div>
             <input type="radio" id="zero" name="tic-tac" value="zero" />

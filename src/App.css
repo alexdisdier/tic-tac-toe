@@ -30,6 +30,15 @@ body {
   width: 80%;
 }
 
+header p {
+  margin-bottom: 16px;
+}
+
+.turn {
+  text-transform: lowercase;
+  font-style: italic;
+}
+
 .game {
   background-color: var(--color-green);
 }

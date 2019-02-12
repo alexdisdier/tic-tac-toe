@@ -140,7 +140,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header />
+        <Header player={this.state.turn} />
         <div className="game">
           <div className="grid">
             {winner}
