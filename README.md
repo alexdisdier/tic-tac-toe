@@ -8,13 +8,6 @@ This is a tic-tac-toe game built with React.
 
 See a live version running this template - https://alexdisdier.github.io/tic-tac-toe/
 
-## Functionalities
-
-- Simultaneously converts any currency available in the dropdown.
-- Validation message in case the user enters a non number character.
-- Round up to the 3 decimals.
-- Use of a Currency Rates API called (data.fixer)[http://data.fixer.io]
-
 ## Directory Structure
 
 ```bash
@@ -47,7 +40,7 @@ Clone this repository :
 ```bash
 git clone https://github.com/alexdisdier/tic-tac-toe.git
 
-cd currency-converter
+cd tic-tac-toe
 ```
 
 Start the server:
