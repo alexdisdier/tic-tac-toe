@@ -6,7 +6,12 @@ This is a tic-tac-toe game built with React.
 
 ## Usage example
 
-See a live version running this template - https://alexdisdier.github.io/tic-tac-toe/
+See demo - https://alexdisdier.github.io/tic-tac-toe/
+
+## 🚧 Functionalities
+
+- Play VS computer with degree of difficulty.
+- Tweak the design
 
 ## Directory Structure
 
@@ -58,7 +63,7 @@ npm run build
 ## Built With
 
 - html
-- scss
+- css
 - [JavaScript](https://developer.mozilla.org/bm/docs/Web/JavaScript)
 - [React.js](https://reactjs.org/docs/hello-world.html)
 - [Create React App](https://facebook.github.io/create-react-app/docs/getting-started)
@@ -66,6 +71,4 @@ npm run build
 ## Acknowledgments
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-- This was developped white attending a FullStack Developer Bootcamp [@Le Reacteur](https://www.lereacteur.io)
 - Deploy React to github pages [codeburst](https://codeburst.io/deploy-react-to-github-pages-to-create-an-amazing-website-42d8b09cd4d)
-- [shields badges](https://shields.io/#/)
